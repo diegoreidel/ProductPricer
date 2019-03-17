@@ -8,7 +8,9 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "test:headless": "ng test --watch=false --browsers=ChromeHeadless"
+    "test:headless": "ng test --watch=false --browsers=ChromeHeadless",
+    "build.prod": "ng build --aot --prod --progress false --base-href \"https://diegoreidel.github.io/ProductPricer/\""
+
   },
   "private": true,
   "dependencies": {

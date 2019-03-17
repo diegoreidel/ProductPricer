@@ -11,8 +11,17 @@ cache:
 addons:
   chrome: stable
 
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN
+  keep-history: true
+  on:
+    branch: master
+
 script:
 - npm run lint
 - npm run test:headless
 - npm run build
 - npm run e2e
+- npm run build.prod
