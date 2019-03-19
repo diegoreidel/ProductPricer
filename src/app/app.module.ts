@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { SupermarketModule } from './supermarket/supermarket.module';
+import { SupermarketsModule } from './supermarket/supermarkets.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,8 @@ import { SupermarketModule } from './supermarket/supermarket.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SupermarketModule
+    SupermarketsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]
