@@ -1,9 +1,9 @@
 import { Observable } from 'rxjs';
-import { Supermarket } from '../shared/interfaces';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 
+import { Supermarket } from '../shared/interfaces';
 
 @Injectable()
 export class SupermarketService {
