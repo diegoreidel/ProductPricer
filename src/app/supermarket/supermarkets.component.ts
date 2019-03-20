@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import { Supermarket } from '../shared/interfaces';
+import { SupermarketService } from '../core/supermarket.service';
 
 @Component({
   selector: 'app-supermarkets',
@@ -7,6 +8,15 @@ import { Supermarket } from '../shared/interfaces';
   styleUrls: ['./supermarkets.component.scss']
 })
 
-export class SupermarketsComponent {
-  supermarket: Supermarket = {id: 1, name: 'Bourbon São Leopoldo', address: '1234 Somewhere St'};
+@Injectable()
+export class SupermarketsComponent implements OnInit {
+
+  supermarkets: Supermarket[];
+
+  constructor(private supermarketService: SupermarketService) { }
+
+  ngOnInit() {
+    this.supermarketService.getSupermarkets()
+      .subscribe((supermarkets: Supermarket[]) => this.supermarkets = supermarkets);
+  }
 }
