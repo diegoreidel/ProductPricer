@@ -1,26 +1,44 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
 
 import { SupermarketsComponent } from './supermarkets.component';
+import { Supermarket } from '../shared/interfaces';
 
 describe('SupermarketComponent', () => {
   let component: SupermarketsComponent;
-  let fixture: ComponentFixture<SupermarketsComponent>;
-
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SupermarketsComponent ]
-    })
-    .compileComponents();
-  }));
+  let mockSupermarketService;
+  let supermarkets:  Supermarket[];
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SupermarketsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    mockSupermarketService = jasmine.createSpyObj(['getSupermarkets']);
+    component = new SupermarketsComponent(mockSupermarketService);
+    supermarkets = createSupermarkets();
   });
-
-  it('should create', () => {
-    expect(component)
-      .toBeTruthy();
+  describe('onInit', () => {
+    it('should populate supermarkets ', () => {
+      mockSupermarketService.getSupermarkets.and.returnValue(of(supermarkets));
+      component.ngOnInit();
+      expect(component.supermarkets.length).toBe(supermarkets.length);
+    });
   });
 });
+
+function createSupermarkets() {
+  return [
+    {
+      'id': 1,
+      'name': 'Bourboun',
+      'address': '1234 Somewhere St'
+    },
+    {
+      'id': 2,
+      'name': 'Bosque',
+      'address': '1234 Anywhere St'
+    },
+    {
+      'id': 3,
+      'name': 'Macromix',
+      'address': '4567 Everywhere St'
+    }
+  ];
+}
+
