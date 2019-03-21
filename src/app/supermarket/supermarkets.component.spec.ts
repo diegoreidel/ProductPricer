@@ -19,6 +19,11 @@ describe('SupermarketComponent', () => {
       component.ngOnInit();
       expect(component.supermarkets.length).toBe(supermarkets.length);
     });
+    it('should call getSupermarkets ', () => {
+      mockSupermarketService.getSupermarkets.and.returnValue(of(supermarkets));
+      component.ngOnInit();
+      expect(mockSupermarketService.getSupermarkets).toHaveBeenCalled();
+    });
   });
 });
 
