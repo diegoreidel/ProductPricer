@@ -2,6 +2,7 @@ import { of } from 'rxjs';
 
 import { SupermarketsComponent } from './supermarkets.component';
 import { Supermarket } from '../shared/interfaces';
+import { createSupermarkets } from '../shared/shared.spec';
 
 describe('SupermarketComponent', () => {
   let component: SupermarketsComponent;
@@ -26,24 +27,3 @@ describe('SupermarketComponent', () => {
     });
   });
 });
-
-function createSupermarkets() {
-  return [
-    {
-      'id': 1,
-      'name': 'Bourboun',
-      'address': '1234 Somewhere St'
-    },
-    {
-      'id': 2,
-      'name': 'Bosque',
-      'address': '1234 Anywhere St'
-    },
-    {
-      'id': 3,
-      'name': 'Macromix',
-      'address': '4567 Everywhere St'
-    }
-  ];
-}
-
