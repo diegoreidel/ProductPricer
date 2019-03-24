@@ -1,5 +1,7 @@
+import { async } from '@angular/core/testing';
+import { of } from 'rxjs';
+
 import { SupermarketService } from './supermarket.service';
-import { Observable, of } from 'rxjs';
 import { Supermarket } from '../shared/interfaces';
 import { createSupermarkets } from '../shared/shared.spec';
 
@@ -8,7 +10,6 @@ describe('SupermarketService', () => {
   let supermarketService: SupermarketService;
   let mockHttp;
   let supermarkets:  Supermarket[];
-  let returnedSupermarkets:  Supermarket[];
 
   describe('getSupermarkets', () => {
     beforeEach(() => {
@@ -16,11 +17,11 @@ describe('SupermarketService', () => {
       supermarketService = new SupermarketService(mockHttp);
       supermarkets = createSupermarkets();
     });
-    it('should retrieve all supermarkets in the mock file', function () {
+
+    it('should retrieve all supermarkets in the mock file', async(() => {
       mockHttp.get.and.returnValue(of(supermarkets));
       supermarketService.getSupermarkets()
-        .subscribe((s: Supermarket[]) => this.returnedSupermarkets = s);
-      expect(this.returnedSupermarkets.length).toEqual(supermarkets.length);
-    });
+        .subscribe(result => expect(result.length).toEqual(supermarkets.length));
+    }));
   });
 });
