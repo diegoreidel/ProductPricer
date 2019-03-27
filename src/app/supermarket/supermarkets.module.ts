@@ -6,9 +6,9 @@ import { SupermarketsListComponent } from './supermarkets-list/supermarkets-list
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [ SupermarketsComponent, SupermarketsListComponent ],
-  imports: [ SharedModule, SupermarketsRoutingModule ],
-  exports: [ SupermarketsComponent, SupermarketsListComponent ]
+  declarations: [SupermarketsComponent, SupermarketsListComponent],
+  imports: [SharedModule, SupermarketsRoutingModule],
+  exports: [SupermarketsComponent, SupermarketsListComponent]
 })
 
 export class SupermarketsModule {

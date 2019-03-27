@@ -1,12 +1,15 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Injectable, Input, OnInit } from '@angular/core';
 
 import { Supermarket } from '../../shared/interfaces';
+import { SorterService } from '../../core/sorter.service';
 
 @Component({
   selector: 'app-supermarkets-list',
   templateUrl: './supermarkets-list.component.html',
   styleUrls: ['./supermarkets-list.component.scss']
 })
+
+@Injectable()
 export class SupermarketsListComponent implements OnInit {
 
   private _supermarkets: Supermarket[] = [];
@@ -22,9 +25,13 @@ export class SupermarketsListComponent implements OnInit {
 
   filteredSupermarkets: Supermarket[] = [];
 
-  constructor() { }
+  constructor(private sorterService: SorterService) { }
 
   ngOnInit() {
+  }
+
+  sort(prop: string) {
+    this.filteredSupermarkets = this.sorterService.sort(this.filteredSupermarkets, prop);
   }
 
 }

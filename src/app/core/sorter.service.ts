@@ -1,6 +1,18 @@
+import { Injectable } from '@angular/core';
+
+@Injectable()
 export class SorterService {
 
-  sort(collection: any[], prop: any) {
+  constructor() {}
+
+  sort(collection: any[], prop: any, reverse: string = '') {
+    if (reverse) {
+      return collection.reverse();
+    }
+    return this.performSort(collection, prop);
+  }
+
+  private performSort(collection: any[], prop: string) {
     return collection.sort((a: any, b: any) => {
       const attributeValue = this.getAttributeValue(a, prop);
       if (typeof attributeValue === 'string' || attributeValue instanceof String) {

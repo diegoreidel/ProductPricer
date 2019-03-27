@@ -1,15 +1,18 @@
 import { SorterService } from './sorter.service';
 import { Supermarket } from '../shared/interfaces';
+import { SupermarketBaseSpec } from './supermarket.base.spec';
 
-describe('sorterService', () => {
+describe('SorterService', () => {
 
   let sorterService: SorterService;
   let unsortedCollection: Supermarket[];
+  const supermarketBaseSpec = new SupermarketBaseSpec();
 
   describe('sort', () => {
+
     beforeEach(() => {
       sorterService = new SorterService();
-      unsortedCollection = createUnsortedCollection();
+      unsortedCollection = supermarketBaseSpec.createUnsortedCollection();
     });
 
     it('should return an empty collection when an empty collection is provided', () => {
@@ -17,73 +20,18 @@ describe('sorterService', () => {
     });
 
     it('should be able to sort supermarkets by Id', () => {
-      expect(sorterService.sort(unsortedCollection, 'id')).toEqual(createCollectionSortedById());
+      expect(sorterService.sort(unsortedCollection, 'id')).toEqual(supermarketBaseSpec.createCollectionSortedById());
     });
 
     it('should be able to sort supermarkets by Name', () => {
-      expect(sorterService.sort(unsortedCollection, 'name')).toEqual(createCollectionSortedByName());
+      expect(sorterService.sort(unsortedCollection, 'name')).toEqual(supermarketBaseSpec.createCollectionSortedByName());
+    });
+
+    it('should be able to reverse an already sorted collection', () => {
+      expect(sorterService.sort(supermarketBaseSpec.createCollectionSortedById(), 'id', 'reverse'))
+        .toEqual(supermarketBaseSpec.createReversedCollectionSortedById());
     });
   });
-
-  function createUnsortedCollection() {
-    return [
-      {
-        'id': 2,
-        'name': 'Macromix',
-        'address': '1234 Anywhere St'
-      },
-      {
-        'id': 1,
-        'name': 'Bourboun',
-        'address': '1234 Somewhere St'
-      },
-      {
-        'id': 3,
-        'name': 'Bosque',
-        'address': '4567 Everywhere St'
-      }
-    ];
-  }
-
-  function createCollectionSortedById() {
-    return [
-      {
-        'id': 1,
-        'name': 'Bourboun',
-        'address': '1234 Somewhere St'
-      },
-      {
-        'id': 2,
-        'name': 'Macromix',
-        'address': '1234 Anywhere St'
-      },
-      {
-        'id': 3,
-        'name': 'Bosque',
-        'address': '4567 Everywhere St'
-      }
-    ];
-  }
-
-  function createCollectionSortedByName() {
-    return [
-      {
-        'id': 3,
-        'name': 'Bosque',
-        'address': '4567 Everywhere St'
-      },
-      {
-        'id': 1,
-        'name': 'Bourboun',
-        'address': '1234 Somewhere St'
-      },
-      {
-        'id': 2,
-        'name': 'Macromix',
-        'address': '1234 Anywhere St'
-      }
-    ];
-  }
 });
 
 

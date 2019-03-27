@@ -1,15 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SupermarketsListComponent } from './supermarkets-list.component';
-import { createSupermarkets } from '../../shared/shared.spec';
+import { SupermarketBaseSpec } from '../../core/supermarket.base.spec';
+import { SorterService } from '../../core/sorter.service';
 
 describe('SupermarketsListComponent', () => {
   let component: SupermarketsListComponent;
+  let mockSorterService;
   let fixture: ComponentFixture<SupermarketsListComponent>;
+  const supermarketBaseSpec = new SupermarketBaseSpec();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SupermarketsListComponent ]
+      declarations: [ SupermarketsListComponent ],
+      providers: [SorterService]
     })
     .compileComponents();
   }));
@@ -18,12 +22,13 @@ describe('SupermarketsListComponent', () => {
     fixture = TestBed.createComponent(SupermarketsListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    mockSorterService = jasmine.createSpyObj(['sort']);
   });
 
   it('should display a list of supermarkets', () => {
     const compiled = fixture.debugElement.nativeElement;
 
-    component.supermarkets = createSupermarkets();
+    component.supermarkets = supermarketBaseSpec.createCollectionSortedById();
     fixture.detectChanges();
 
     expect(compiled.querySelector('table.supermarket-list')).toBeTruthy();
@@ -33,5 +38,15 @@ describe('SupermarketsListComponent', () => {
 
     expect(compiled.querySelector('td')).toBeTruthy();
 
+  });
+
+  it('should allow sorting the list', () => {
+    const sortedCollection = supermarketBaseSpec.createCollectionSortedById();
+    component.supermarkets = supermarketBaseSpec.createUnsortedCollection();
+    mockSorterService.sort.and.returnValue(sortedCollection);
+
+    component.sort('id');
+
+    expect(component.filteredSupermarkets).toEqual(sortedCollection);
   });
 });

@@ -3,19 +3,21 @@ import { of } from 'rxjs';
 
 import { SupermarketService } from './supermarket.service';
 import { Supermarket } from '../shared/interfaces';
-import { createSupermarkets } from '../shared/shared.spec';
+import { SupermarketBaseSpec } from './supermarket.base.spec';
 
 describe('SupermarketService', () => {
 
   let supermarketService: SupermarketService;
   let mockHttp;
   let supermarkets:  Supermarket[];
+  const supermarketBaseSpec = new SupermarketBaseSpec();
 
   describe('getSupermarkets', () => {
+
     beforeEach(() => {
       mockHttp = jasmine.createSpyObj(['get']);
       supermarketService = new SupermarketService(mockHttp);
-      supermarkets = createSupermarkets();
+      supermarkets = supermarketBaseSpec.createCollectionSortedById();
     });
 
     it('should retrieve all supermarkets in the mock file', async(() => {
@@ -25,3 +27,4 @@ describe('SupermarketService', () => {
     }));
   });
 });
+
