@@ -1,0 +1,14 @@
+<table class="supermarket-list table table-hover">
+  <thead>
+    <tr>
+      <th class="supermarket-id">Id</th>
+      <th class="supermarket-name">Name</th>
+      <th class="supermarket-address">Address</th>
+    </tr>
+  </thead>
+  <tr *ngFor="let supermarket of supermarkets">
+    <td>{{ supermarket.id }}</td>
+    <td>{{ supermarket.name }}</td>
+    <td>{{ supermarket.address }}</td>
+  </tr>
+</table>
