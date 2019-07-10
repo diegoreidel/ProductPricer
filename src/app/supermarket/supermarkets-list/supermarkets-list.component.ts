@@ -12,6 +12,10 @@ import { SorterService } from '../../core/sorter.service';
 @Injectable()
 export class SupermarketsListComponent implements OnInit {
 
+  componentTitle = 'Supermarkets';
+  filterByTitle = 'Filter by:';
+  filteredByTitle = 'Filtered by:';
+
   private _supermarkets: Supermarket[] = [];
   @Input() get supermarkets(): Supermarket[] {
     return this._supermarkets;
