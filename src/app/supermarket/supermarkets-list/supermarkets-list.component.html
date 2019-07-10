@@ -7,17 +7,17 @@
     <div class="row">
       <div class="col-md-2">{{filterByTitle}}</div>
       <div class="col-md-4">
-        <input type="text" />
+        <input type="text" [(ngModel)]='filter'/>
       </div>
     </div>
     <div class="row">
       <div class="col-md-6">
-        <h4>{{filteredByTitle}}</h4>
+        <h4>{{filteredByTitle}} {{filter}}</h4>
       </div>
     </div>
 
     <div class="table-responsive">
-      <table class="supermarket-list table table-hover" *ngIf="supermarkets && supermarkets.length">
+      <table class="supermarket-list table table-hover" *ngIf="filteredSupermarkets && filteredSupermarkets.length">
         <thead>
           <tr>
             <th class="supermarket-id">Id</th>
@@ -25,7 +25,7 @@
             <th class="supermarket-address">Address</th>
           </tr>
         </thead>
-        <tr *ngFor="let supermarket of supermarkets">
+        <tr *ngFor="let supermarket of filteredSupermarkets">
           <td>{{ supermarket.id }}</td>
           <td>{{ supermarket.name }}</td>
           <td>{{ supermarket.address }}</td>
