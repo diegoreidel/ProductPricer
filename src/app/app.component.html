@@ -1,4 +1,11 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<h1>Welcome to {{ title }}!</h1>
+<nav class="navbar navbar-expand navbar-light bg-light">
+  <a class="navbar-brand">{{ title }}</a>
+  <ul class="nav navbar-nav">
+    <li><a [routerLink]="['/supermarkets']">Supermarkets List</a></li>
+  </ul>
+</nav>
 
-<router-outlet></router-outlet>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

@@ -1,8 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
+import { SharedModule} from '../../shared/shared.module';
 import { SupermarketsListComponent } from './supermarkets-list.component';
 import { SupermarketBaseSpec } from '../../core/supermarket.base.spec';
 import { SorterService } from '../../core/sorter.service';
+import { RouterTestingModule } from '@angular/router/testing';
+
 
 describe('SupermarketsListComponent', () => {
   let component: SupermarketsListComponent;
@@ -13,6 +17,7 @@ describe('SupermarketsListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ SupermarketsListComponent ],
+      imports: [FormsModule, SharedModule, RouterTestingModule],
       providers: [SorterService]
     })
     .compileComponents();

@@ -1,10 +1,12 @@
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { Observable, ObservableInput, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { catchError, tap } from 'rxjs/operators';
 import { Supermarket } from '../shared/interfaces';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class SupermarketService {
 
   private baseUrl = 'assets/';
@@ -12,6 +14,20 @@ export class SupermarketService {
   constructor(private http: HttpClient) { }
 
   getSupermarkets(): Observable<Supermarket[]> {
-    return this.http.get<Supermarket[]>(this.baseUrl + 'supermarkets.json');
+    return this.http.get<Supermarket[]>(this.baseUrl + 'supermarkets.json')
+    .pipe(catchError(this.handleError));
+  }
+
+  handleError(err: HttpErrorResponse): ObservableInput<Supermarket[]> {
+
+    let errorMessage = '';
+
+    if (err.error instanceof ErrorEvent) {
+      errorMessage = `An error ocurred: ${err.error.message}`;
+    } else {
+      errorMessage = `Server returned code: ${err.status}, message is: ${err.message}`;
+    }
+
+    return throwError(errorMessage);
   }
 }

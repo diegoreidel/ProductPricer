@@ -1,4 +1,4 @@
-import { Component, Injectable, OnInit } from '@angular/core';
+ import { Component, Injectable, OnInit } from '@angular/core';
 
 import { Supermarket } from '../shared/interfaces';
 import { SupermarketService } from '../core/supermarket.service';

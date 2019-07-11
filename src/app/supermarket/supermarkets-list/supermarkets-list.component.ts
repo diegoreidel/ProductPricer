@@ -10,10 +10,9 @@ import { SorterService } from '../../core/sorter.service';
 })
 @Injectable()
 export class SupermarketsListComponent implements OnInit {
-  private componentTitle = 'Supermarkets';
-  private filterByTitle = 'Filter by:';
-  private filteredByTitle = 'Filtered by:';
-  private filteredSupermarkets: Supermarket[] = [];
+  componentTitle = 'Supermarkets';
+  filterByTitle = 'Filter by:';
+  filteredSupermarkets: Supermarket[] = [];
 
   private _filter: string;
   private _supermarkets: Supermarket[] = [];
