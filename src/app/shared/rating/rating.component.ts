@@ -7,8 +7,8 @@ import { Component, Input, OnChanges } from '@angular/core';
 })
 export class RatingComponent implements OnChanges {
 
-  @Input() private rating: number;
-  private starWidth: number;
+  starWidth: number;
+  @Input() rating: number;
 
   constructor() { }
 
