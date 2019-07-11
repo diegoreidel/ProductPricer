@@ -1,14 +1,36 @@
-<table class="supermarket-list table table-hover">
-  <thead>
-    <tr>
-      <th class="supermarket-id">Id</th>
-      <th class="supermarket-name">Name</th>
-      <th class="supermarket-address">Address</th>
-    </tr>
-  </thead>
-  <tr *ngFor="let supermarket of supermarkets">
-    <td>{{ supermarket.id }}</td>
-    <td>{{ supermarket.name }}</td>
-    <td>{{ supermarket.address }}</td>
-  </tr>
-</table>
+<div class="card">
+  <div class="card-header">
+    {{componentTitle}}
+  </div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-2">{{filterByTitle}}</div>
+      <div class="col-md-4">
+        <input type="text" [(ngModel)]='filter'/>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="supermarket-list table table-hover" *ngIf="filteredSupermarkets && filteredSupermarkets.length">
+        <thead>
+          <tr>
+            <th class="supermarket-id">Id</th>
+            <th class="supermarket-name">Name</th>
+            <th class="supermarket-address">Address</th>
+            <th class="supermarket-rating">Rating</th>
+            <th class="supermarket-action">Actions</th>
+          </tr>
+        </thead>
+        <tr *ngFor="let supermarket of filteredSupermarkets">
+          <td>{{ supermarket.id }}</td>
+          <td>{{ supermarket.name }}</td>
+          <td>{{ supermarket.address }}</td>
+          <td><app-rating [rating]='supermarket.rating'></app-rating></td>
+          <td>
+            <a [routerLink]="['/supermarkets', supermarket.id]" class="btn btn-primary">View</a>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

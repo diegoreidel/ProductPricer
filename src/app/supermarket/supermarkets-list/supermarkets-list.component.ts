@@ -8,11 +8,26 @@ import { SorterService } from '../../core/sorter.service';
   templateUrl: './supermarkets-list.component.html',
   styleUrls: ['./supermarkets-list.component.scss']
 })
-
 @Injectable()
 export class SupermarketsListComponent implements OnInit {
+  componentTitle = 'Supermarkets';
+  filterByTitle = 'Filter by:';
+  filteredSupermarkets: Supermarket[] = [];
 
+  private _filter: string;
   private _supermarkets: Supermarket[] = [];
+
+  get filter(): string {
+    return this._filter;
+  }
+
+  set filter(value: string) {
+    this._filter = value;
+    this.filteredSupermarkets = this._filter
+      ? this.performFilter(this._filter)
+      : this._supermarkets;
+  }
+
   @Input() get supermarkets(): Supermarket[] {
     return this._supermarkets;
   }
@@ -23,15 +38,22 @@ export class SupermarketsListComponent implements OnInit {
     }
   }
 
-  filteredSupermarkets: Supermarket[] = [];
+  constructor(private sorterService: SorterService) {}
 
-  constructor(private sorterService: SorterService) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   sort(prop: string) {
-    this.filteredSupermarkets = this.sorterService.sort(this.filteredSupermarkets, prop);
+    this.filteredSupermarkets = this.sorterService.sort(
+      this.filteredSupermarkets,
+      prop
+    );
   }
 
+  performFilter(value: string): Supermarket[] {
+    value = value.toLocaleLowerCase();
+    return this._supermarkets.filter(
+      (supermarket: Supermarket) =>
+        supermarket.name.toLocaleLowerCase().indexOf(value) !== -1
+    );
+  }
 }

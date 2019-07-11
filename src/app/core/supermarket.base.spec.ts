@@ -7,17 +7,20 @@ export class SupermarketBaseSpec {
       {
         'id': 2,
         'name': 'Macromix',
-        'address': '1234 Anywhere St'
+        'address': '1234 Anywhere St',
+        'rating': 2
       },
       {
         'id': 1,
         'name': 'Bourboun',
-        'address': '1234 Somewhere St'
+        'address': '1234 Somewhere St',
+        'rating': 1
       },
       {
         'id': 3,
         'name': 'Bosque',
-        'address': '4567 Everywhere St'
+        'address': '4567 Everywhere St',
+        'rating': 3
       }
     ];
   }
@@ -27,17 +30,20 @@ export class SupermarketBaseSpec {
       {
         'id': 1,
         'name': 'Bourboun',
-        'address': '1234 Somewhere St'
+        'address': '1234 Somewhere St',
+        'rating': 1
       },
       {
         'id': 2,
         'name': 'Macromix',
-        'address': '1234 Anywhere St'
+        'address': '1234 Anywhere St',
+        'rating': 2
       },
       {
         'id': 3,
         'name': 'Bosque',
-        'address': '4567 Everywhere St'
+        'address': '4567 Everywhere St',
+        'rating': 3
       }
     ];
   }
@@ -47,17 +53,20 @@ export class SupermarketBaseSpec {
       {
         'id': 3,
         'name': 'Bosque',
-        'address': '4567 Everywhere St'
+        'address': '4567 Everywhere St',
+        'rating': 3
       },
       {
         'id': 1,
         'name': 'Bourboun',
-        'address': '1234 Somewhere St'
+        'address': '1234 Somewhere St',
+        'rating': 1
       },
       {
         'id': 2,
         'name': 'Macromix',
-        'address': '1234 Anywhere St'
+        'address': '1234 Anywhere St',
+        'rating': 2
       }
     ];
   }
@@ -67,17 +76,20 @@ export class SupermarketBaseSpec {
       {
         'id': 3,
         'name': 'Bosque',
-        'address': '4567 Everywhere St'
+        'address': '4567 Everywhere St',
+        'rating': 3
       },
       {
         'id': 2,
         'name': 'Macromix',
-        'address': '1234 Anywhere St'
+        'address': '1234 Anywhere St',
+        'rating': 2
       },
       {
         'id': 1,
         'name': 'Bourboun',
-        'address': '1234 Somewhere St'
+        'address': '1234 Somewhere St',
+        'rating': 1
       }
     ];
   }

@@ -2,16 +2,19 @@
   {
     "id": 1,
     "name": "Bourboun",
-    "address": "1234 Somewhere St"
+    "address": "1234 Somewhere St",
+    "rating": 4.1
   },
   {
     "id": 2,
     "name": "Bosque",
-    "address": "1234 Anywhere St"
+    "address": "1234 Anywhere St",
+    "rating": 2.2
   },
   {
     "id": 3,
     "name": "Macromix",
-    "address": "4567 Everywhere St"
+    "address": "4567 Everywhere St",
+    "rating": 3.5
   }
 ]
