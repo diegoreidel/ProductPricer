@@ -1,10 +1,120 @@
-<div class="card" *ngIf="supermarket">
-    <div class="card-header">
-        {{supermarket.name}}
+<form #form="ngForm" (onSubmit)="onSave(form)" class="" *ngIf="supermarket">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input
+      id="name"
+      #fieldName="ngModel"
+      name="name"
+      class="form-control"
+      [class.field-error]="form.submitted && fieldName.invalid"
+      [(ngModel)]="supermarket.name"
+      required
+    />
+    <div [hidden]="!form.submitted || fieldName.valid" class="alert alert-danger">
+        Name is required
     </div>
-    <div class="card-footer">
-        <button class="btn btn-outline-secondary" (click)='onBack()'>
-            <i class="fa fa-chevron-left"></i> Back
-        </button>
+  </div>
+  <div class="form-group">
+    <label for="address">Address</label>
+    <input
+      id="address"
+      #fieldAddress="ngModel"
+      name="address"
+      class="form-control"
+      [class.field-error]="form.submitted && fieldAddress.invalid"
+      [(ngModel)]="supermarket.address"
+      required
+    />
+    <div [hidden]="!form.submitted || fieldAddress.valid" class="alert alert-danger">
+            Address is required
+        </div>
+  </div>
+  <div class="form-check form-group">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      value=""
+      name="favorite"
+      id="favorite"
+      [(ngModel)]="supermarket.favorite"
+    />
+    <label class="form-check-label" for="favorite">
+      Favorite supermarket
+    </label>
+  </div>
+
+  <div class="form-group">
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="priceRange"
+        id="expensive"
+        value="expensive"
+        [(ngModel)]="supermarket.priceRange"
+      />
+      <label class="form-check-label" for="expensive">
+        Expensive
+      </label>
     </div>
-</div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="priceRange"
+        id="normal"
+        value="normal"
+        [(ngModel)]="supermarket.priceRange"
+      />
+      <label class="form-check-label" for="normal">
+        Normal
+      </label>
+    </div>
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="priceRange"
+        id="cheap"
+        value="cheap"
+        [(ngModel)]="supermarket.priceRange"
+      />
+      <label class="form-check-label" for="cheap">
+        Cheap
+      </label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="rating">Rating</label>
+    <select
+      class="form-control"
+      id="rating"
+      [(ngModel)]="supermarket.rating"
+      name="rating"
+    >
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="notes">Notes</label>
+    <textarea
+      class="form-control"
+      id="notes"
+      rows="3"
+      name="notes"
+      [(ngModel)]="supermarket.notes"
+      maxlength="250"
+    ></textarea>
+  </div>
+
+  <button class="btn btn-outline-secondary" (click)="onBack()">
+    <i class="fa fa-chevron-left"></i> Back
+  </button>
+  <button class="btn btn-primary">Save</button>
+</form>
