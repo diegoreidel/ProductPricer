@@ -3,18 +3,27 @@
     "id": 1,
     "name": "Bourboun",
     "address": "1234 Somewhere St",
-    "rating": 4.1
+    "favorite": true,
+    "priceRange": "expensive",
+    "rating": 3,
+    "notes": "Some notes here and here and here"
   },
   {
     "id": 2,
     "name": "Bosque",
     "address": "1234 Anywhere St",
-    "rating": 2.2
+    "favorite": false,
+    "priceRange": "normal",
+    "rating": 4,
+    "notes": "Some notes here and here and here"
   },
   {
     "id": 3,
     "name": "Macromix",
     "address": "4567 Everywhere St",
-    "rating": 3.5
+    "favorite": false,
+    "priceRange": "cheap",
+    "rating": 5,
+    "notes": "Some notes here and here and here"
   }
 ]
