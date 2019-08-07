@@ -1,4 +1,4 @@
-import { Observable, ObservableInput, throwError } from 'rxjs';
+import { Observable, ObservableInput, throwError, of } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, tap } from 'rxjs/operators';
@@ -16,6 +16,10 @@ export class SupermarketService {
   getSupermarkets(): Observable<Supermarket[]> {
     return this.http.get<Supermarket[]>(this.baseUrl + 'supermarkets.json')
     .pipe(catchError(this.handleError));
+  }
+
+  postSupermarket(supermarket: Supermarket): Observable<any> {
+    return this.http.post('https://putsreq.com/NX9n86OlaTqhctnSx3sV', supermarket);
   }
 
   handleError(err: HttpErrorResponse): ObservableInput<Supermarket[]> {

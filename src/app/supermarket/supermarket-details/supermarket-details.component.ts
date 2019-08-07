@@ -15,6 +15,8 @@ export class SupermarketDetailsComponent implements OnInit {
   id: number;
   originalSupermarket: Supermarket;
   supermarket: Supermarket;
+  postError = false;
+  postErrorMessage: string;
 
   constructor(private route: ActivatedRoute, private router: Router, private supermarketService: SupermarketService) { }
 
@@ -35,6 +37,19 @@ export class SupermarketDetailsComponent implements OnInit {
   }
 
   onSave(form: NgForm): void {
-    
+    if (form.valid) {
+      this.supermarketService.postSupermarket(this.supermarket).subscribe(
+        result => console.log('Success', result),
+        error => this.onHttpError(error)
+      );
+    } else {
+      this.postError = true;
+      this.postErrorMessage = 'Please check the provided data';
+    }
+  }
+
+  onHttpError(errorResponse: any): void {
+    this.postError = true;
+    this.postErrorMessage = errorResponse.error.errorMessage;
   }
 }
