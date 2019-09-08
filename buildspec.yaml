@@ -6,10 +6,9 @@ env:
 
 phases:
     install:
+        runtime-versions:
+          nodejs: 10
         commands:
-        # Download and Install NodeJS
-        - echo Installing Node
-        - pkg install node
         # Install Angular
         - echo Installing Angular
         - npm install -g @angular/cli
