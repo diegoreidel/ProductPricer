@@ -1,0 +1,29 @@
+version: 0.2
+
+env:
+    variables:
+        BUILD_ENV : "prod"
+
+phases:
+    install:
+        commands:
+        # Download and Install NodeJS
+        - echo Installing Node
+        - pkg install node
+        # Install Angular
+        - echo Installing Angular
+        - npm install -g @angular/cli
+        # Install node dependancies.
+        - npm install
+
+build:
+        commands:
+        # Builds Angular application. You can also build using custom environment here like mock or staging
+        - echo Build started on `date`
+        - ng build --${BUILD_ENV}
+
+artifacts:
+    files:
+        - '/'
+    discard-paths: yes
+    base-directory: 'dist*'
